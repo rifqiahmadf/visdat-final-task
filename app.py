@@ -13,8 +13,8 @@ import requests
 import json
 
 # OpenRouter API configuration
-# Ganti dengan API key Anda yang valid
-OPENROUTER_API_KEY = "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"
+# Mengambil API key dari secrets.toml
+OPENROUTER_API_KEY = st.secrets.get("openrouter", {}).get("api_key", "")
 DEFAULT_MODEL = "deepseek/deepseek-chat-v3-0324:free"
 
 # Function to get LLM analysis from OpenRouter
@@ -30,8 +30,8 @@ def get_forecast_analysis(forecast_table, filters):
         str: LLM analysis of forecast data in Bahasa Indonesia
     """
     # Check if API key has been set
-    if OPENROUTER_API_KEY == "YOUR_OPENROUTER_API_KEY_HERE":
-        return "Error: API key belum dikonfigurasi. Silakan perbarui OPENROUTER_API_KEY di kode dengan API key yang valid dari https://openrouter.ai/"
+    if not OPENROUTER_API_KEY:
+        return "Error: API key tidak ditemukan. Pastikan file .streamlit/secrets.toml berisi konfigurasi API key yang valid."
     
     # Create a summary of the filters
     filter_summary = ", ".join([
