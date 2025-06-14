@@ -5,4 +5,10 @@ matplotlib==3.8.2
 seaborn==0.13.1
 plotly==5.18.0
 prophet==1.1.5
-requests==2.31.0 
+requests==2.31.0
+pystan==3.7.0
+cmdstanpy>=1.1.0
+convertdate>=2.3.2
+holidays>=0.25
+python-dateutil>=2.8.0
+setuptools-git>=1.2 
